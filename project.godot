@@ -1,0 +1,13 @@
+; Engine configuration file.
+; Godot 4.x project — Tidewrack
+; UI and levels are built in code, so scene files stay minimal.
+
+config_version=5
+
+[application]
+
+config/name="Tidewrack"
+config/description="A narrative adventure set on a fog-bound island off the Washington coast. You are the new keeper of Cape Marrow Light. The last keeper vanished."
+run/main_scene="res://scenes/main_menu.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+config/icon="res://icon.svg"
