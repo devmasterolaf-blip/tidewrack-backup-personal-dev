@@ -1,0 +1,12 @@
+{
+	"logbook": {
+		"speaker": "Keeper's Log",
+		"text": "The ledger is open to the last filled page. The handwriting is Edith Vane's \u2014 the keeper who was here before you.",
+		"next": "logbook_2"
+	},
+	"logbook_2": {
+		"speaker": "Edith Vane",
+		"text": "\"Third night of fog. There is a light off the north rocks that answers mine. I have told no one.\"",
+		"next": null
+	}
+}
