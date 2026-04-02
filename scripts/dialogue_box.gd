@@ -5,7 +5,7 @@ extends CanvasLayer
 ## starts and hides when it finishes. Linear lines advance on ui_accept;
 ## choice nodes show a button per option.
 
-const TEXT_SPEED := 30.0  # characters per second for the typewriter effect
+const TEXT_SPEED := 45.0  # characters per second for the typewriter effect
 
 var _root: PanelContainer
 var _speaker_label: Label
@@ -50,6 +50,7 @@ func _build_ui() -> void:
 	vbox.add_child(_speaker_label)
 
 	_text_label = RichTextLabel.new()
+	_text_label.fit_content = true
 	_text_label.bbcode_enabled = true
 	_text_label.custom_minimum_size = Vector2(0, 64)
 	_text_label.add_theme_font_size_override("normal_font_size", 20)
