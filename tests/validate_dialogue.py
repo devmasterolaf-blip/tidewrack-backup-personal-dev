@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 # Entry-point node ids the game starts graphs from (see scripts/game.gd).
-KNOWN_ENTRIES = {"logbook", "radio", "start"}
+KNOWN_ENTRIES = {"logbook", "radio", "door", "start"}
 
 ROOT = Path(__file__).resolve().parent.parent
 DIALOGUE_DIR = ROOT / "data" / "dialogue"
