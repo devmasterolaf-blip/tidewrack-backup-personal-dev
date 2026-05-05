@@ -7,6 +7,7 @@ extends Node
 signal state_changed
 
 const SAVE_PATH := "user://save.json"
+const SAVE_VERSION := 1
 
 ## Story flags set during play, e.g. {"trusted_edith": true}.
 var flags: Dictionary = {}
@@ -35,6 +36,7 @@ func has_save() -> bool:
 
 func save_game() -> bool:
 	var payload := {
+		"version": SAVE_VERSION,
 		"scene": current_scene,
 		"flags": flags,
 	}
@@ -60,6 +62,7 @@ func load_game() -> bool:
 	var parsed: Variant = JSON.parse_string(text)
 
 	var data: Dictionary = parsed
+	# Future-proofing: migrate older save versions here.
 	current_scene = data.get("scene", "res://scenes/game.tscn")
 	flags = data.get("flags", {})
 	state_changed.emit()

@@ -11,6 +11,7 @@ var _player: Player
 var _interactables: Array[Interactable] = []
 var _prompt: Label
 var _nearest: Interactable = null
+var _paused: bool = false
 
 
 func _ready() -> void:
@@ -118,7 +119,11 @@ func _find_nearest() -> Interactable:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if DialogueManager.is_active:
+	if event.is_action_pressed("ui_cancel"):
+		_toggle_pause()
+		get_viewport().set_input_as_handled()
+		return
+	if _paused or DialogueManager.is_active:
 		return
 	if event.is_action_pressed("ui_accept") and _nearest != null:
 		_nearest.interact()
@@ -127,4 +132,70 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _set_movement(enabled: bool) -> void:
 	if _player != null:
-		_player.can_move = enabled
+		_player.can_move = enabled and not _paused
+
+
+func _toggle_pause() -> void:
+	if DialogueManager.is_active:
+		return
+	_paused = not _paused
+	_set_movement(not _paused)
+	if _paused:
+		_show_pause_menu()
+
+
+func _show_pause_menu() -> void:
+	var overlay := Control.new()
+	overlay.name = "PauseOverlay"
+	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	var layer := CanvasLayer.new()
+	layer.layer = 20
+	layer.name = "PauseLayer"
+	layer.add_child(overlay)
+	add_child(layer)
+
+	var dim := ColorRect.new()
+	dim.color = Color(0, 0, 0, 0.6)
+	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
+	overlay.add_child(dim)
+
+	var center := CenterContainer.new()
+	center.set_anchors_preset(Control.PRESET_FULL_RECT)
+	overlay.add_child(center)
+
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 12)
+	center.add_child(vbox)
+
+	var resume := _menu_button("Resume")
+	resume.pressed.connect(func():
+		layer.queue_free()
+		_paused = false
+		_set_movement(true))
+	vbox.add_child(resume)
+
+	var save := _menu_button("Save")
+	save.pressed.connect(func():
+		GameState.current_scene = scene_file_path
+		var ok := GameState.save_game()
+		save.text = "Saved ✓" if ok else "Save failed")
+	vbox.add_child(save)
+
+	var settings := _menu_button("Settings")
+	settings.pressed.connect(func():
+		overlay.add_child(preload("res://scenes/ui/settings.tscn").instantiate()))
+	vbox.add_child(settings)
+
+	var menu := _menu_button("Main Menu")
+	menu.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/main_menu.tscn"))
+	vbox.add_child(menu)
+
+	resume.grab_focus()
+
+
+func _menu_button(text: String) -> Button:
+	var button := Button.new()
+	button.text = text
+	button.custom_minimum_size = Vector2(200, 40)
+	button.add_theme_font_size_override("font_size", 20)
+	return button
