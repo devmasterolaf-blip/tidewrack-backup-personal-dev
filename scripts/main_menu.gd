@@ -46,7 +46,7 @@ func _build_ui() -> void:
 	vbox.add_child(new_button)
 
 	_continue_button = _make_button("Continue")
-	_continue_button.disabled = false
+	_continue_button.disabled = not GameState.has_save()
 	_continue_button.pressed.connect(_on_continue)
 	vbox.add_child(_continue_button)
 
