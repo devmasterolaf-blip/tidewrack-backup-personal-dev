@@ -111,7 +111,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not DialogueManager.is_active or _has_choices:
 		return
 	if event.is_action_pressed("ui_accept"):
-		DialogueManager.advance()
+		if _typing:
+			# Fast-forward the typewriter on the first press.
+			_revealed = float(_full_text.length())
+			_text_label.text = _full_text
+			_typing = false
+			_on_text_complete()
+		else:
+			DialogueManager.advance()
 		get_viewport().set_input_as_handled()
 
 
