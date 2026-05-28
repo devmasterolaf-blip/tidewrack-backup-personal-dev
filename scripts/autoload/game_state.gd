@@ -60,10 +60,14 @@ func load_game() -> bool:
 	file.close()
 
 	var parsed: Variant = JSON.parse_string(text)
+	if typeof(parsed) != TYPE_DICTIONARY:
+		push_error("GameState: save file is corrupt.")
+		return false
 
 	var data: Dictionary = parsed
 	# Future-proofing: migrate older save versions here.
 	current_scene = data.get("scene", "res://scenes/game.tscn")
-	flags = data.get("flags", {})
+	var loaded_flags: Variant = data.get("flags", {})
+	flags = loaded_flags if typeof(loaded_flags) == TYPE_DICTIONARY else {}
 	state_changed.emit()
 	return true
