@@ -97,6 +97,9 @@ func _build_hud() -> void:
 
 
 func _process(_delta: float) -> void:
+	if _paused or DialogueManager.is_active:
+		_prompt.hide()
+		return
 	_nearest = _find_nearest()
 	if _nearest != null:
 		_prompt.text = "[ Enter ] %s" % _nearest.prompt_text
