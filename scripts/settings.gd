@@ -41,7 +41,7 @@ func _build_ui() -> void:
 	_volume_slider.min_value = 0.0
 	_volume_slider.max_value = 1.0
 	_volume_slider.step = 0.01
-	_volume_slider.value = 1.0
+	_volume_slider.value = _current_volume_linear()
 	_volume_slider.value_changed.connect(_on_volume_changed)
 	vbox.add_child(_volume_slider)
 
