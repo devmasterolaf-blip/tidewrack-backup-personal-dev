@@ -86,7 +86,7 @@ func _on_line(speaker: String, text: String, choices: Array) -> void:
 			var choice: Dictionary = choices[i]
 			var button := Button.new()
 			button.text = str(choice.get("text", "..."))
-				button.disabled = false
+			button.disabled = true  # enabled once text finishes typing
 			button.pressed.connect(_on_choice_pressed.bind(i))
 			_choice_box.add_child(button)
 	else:
@@ -104,7 +104,12 @@ func _process(delta: float) -> void:
 
 
 func _on_text_complete() -> void:
-	pass
+	if _has_choices:
+		for child in _choice_box.get_children():
+			(child as Button).disabled = false
+		# Focus the first choice for keyboard/controller navigation.
+		if _choice_box.get_child_count() > 0:
+			(_choice_box.get_child(0) as Button).grab_focus()
 
 
 func _unhandled_input(event: InputEvent) -> void:
