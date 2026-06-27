@@ -36,3 +36,18 @@ func _physics_process(delta: float) -> void:
 	var target := position + dir * speed * delta
 	position.x = clampf(target.x, bounds.position.x, bounds.position.x + bounds.size.x)
 	position.y = clampf(target.y, bounds.position.y, bounds.position.y + bounds.size.y)
+
+## --- Public Demo milestone: wall collision (scaffold, not yet wired) ---
+## Ground-floor collision is a Public Demo (M2) deliverable. For now the
+## player is clamped to `bounds`; `walls` will hold solid rects to resolve
+## against once the lamp-room level lands.
+var walls: Array[Rect2] = []
+
+
+func add_wall(rect: Rect2) -> void:
+	walls.append(rect)
+
+
+func _resolve_walls(_next: Vector2) -> Vector2:
+	# TODO(demo): push the player out of any overlapping wall rect.
+	return _next
