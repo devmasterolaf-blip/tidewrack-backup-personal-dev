@@ -25,3 +25,17 @@ and the collision/controller gaps left open in the slice.
   path; systems work is scheduled around leaving writing time.
 - **Marketing beats are milestones too.** Store page, trailer, and Next Fest
   are tracked as first-class deliverables, not afterthoughts.
+
+## Demo scope locked (Steam Next Fest)
+
+For the public demo we ship the vertical slice **plus**:
+
+- **Lamp-room chapter** — the stair from the ground floor opens into the lamp
+  room; relighting the lamp is the demo's closing beat.
+- **Journal** — discovered logs collect into a readable in-game journal.
+- **Controller support** — gamepad input map layered on the built-in actions.
+- **Playtest fixes** — the round of fixes from the vertical-slice playtests.
+
+Everything past this list (chapters 2+, full soundtrack, cover art integration)
+is **out of demo scope** and deferred to the press/launch milestones. No crunch,
+but the Next Fest date is firm.
