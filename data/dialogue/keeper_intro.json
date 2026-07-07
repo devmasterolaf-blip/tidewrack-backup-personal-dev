@@ -37,7 +37,7 @@
 		"text": "That was eleven days ago. The dinghy is gone from the boathouse.",
 		"choices": [
 			{ "text": "Radio the mainland about this.", "next": "logbook_end_radio", "set_flag": { "trusted_edith": true } },
-			{ "text": "Keep it to yourself for now.", "next": "logbook_end_quiet" }
+			{ "text": "Keep it to yourself for now.", "next": "logbook_end_quiet", "set_flag": { "trusted_edith": false } }
 		]
 	},
 	"logbook_end_radio": {
