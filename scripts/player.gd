@@ -51,3 +51,6 @@ func add_wall(rect: Rect2) -> void:
 func _resolve_walls(_next: Vector2) -> Vector2:
 	# TODO(demo): push the player out of any overlapping wall rect.
 	return _next
+
+## Analog-stick deadzone for controller support (Public Demo milestone).
+const STICK_DEADZONE := 0.2
