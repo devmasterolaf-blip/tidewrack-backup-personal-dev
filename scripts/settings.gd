@@ -57,6 +57,7 @@ func _build_ui() -> void:
 	close_button.pressed.connect(_close)
 	vbox.add_child(close_button)
 
+	close_button.grab_focus()
 
 
 func _current_volume_linear() -> float:
@@ -75,6 +76,10 @@ func _on_fullscreen_toggled(pressed: bool) -> void:
 	)
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		_close()
+		get_viewport().set_input_as_handled()
 
 
 func _close() -> void:
