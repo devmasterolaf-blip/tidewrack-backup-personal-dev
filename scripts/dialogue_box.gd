@@ -52,7 +52,7 @@ func _build_ui() -> void:
 	_text_label = RichTextLabel.new()
 	_text_label.fit_content = true
 	_text_label.bbcode_enabled = true
-	_text_label.custom_minimum_size = Vector2(0, 64)
+	_text_label.custom_minimum_size = Vector2(0, 96)
 	_text_label.add_theme_font_size_override("normal_font_size", 20)
 	vbox.add_child(_text_label)
 
