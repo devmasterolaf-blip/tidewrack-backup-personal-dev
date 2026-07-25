@@ -133,3 +133,16 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+# --- Public Demo: journal graphs -------------------------------------------
+# The journal system (scripts/journal.gd) reads discovered-log entries from the
+# same JSON-graph format, so they validate through the checker above. Journal
+# graphs live under data/dialogue/ with an "entry_*" id and are held to the same
+# rules (targets resolve, a terminal exists). This hook is a placeholder until
+# the journal content lands for the public demo.
+JOURNAL_ENTRY_PREFIX = "entry_"
+
+
+def is_journal_graph(graph: dict) -> bool:
+	return any(str(k).startswith(JOURNAL_ENTRY_PREFIX) for k in graph)
