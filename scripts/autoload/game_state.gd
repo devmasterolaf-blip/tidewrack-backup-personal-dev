@@ -71,3 +71,8 @@ func load_game() -> bool:
 	flags = loaded_flags if typeof(loaded_flags) == TYPE_DICTIONARY else {}
 	state_changed.emit()
 	return true
+
+
+func delete_save() -> void:
+	if has_save():
+		DirAccess.remove_absolute(SAVE_PATH)
