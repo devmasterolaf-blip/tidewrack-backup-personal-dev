@@ -99,3 +99,12 @@ godot --headless --path . --check-only   # parse all scripts
 > has been checked statically and via the dialogue validator, **not** yet run in
 > the engine. First engine open may surface minor fixups — tracked in the issue
 > list.
+
+## Steam Next Fest demo
+
+The public demo (target: **Steam Next Fest**) extends the vertical slice with
+the lamp-room chapter, a discovered-logs journal, and controller support. Demo
+scope is locked in [`docs/milestones.md`](docs/milestones.md); the build is
+feature-frozen and tagged `v0.2-demo-rc`.
+
+Demo controls add a gamepad (analog stick + A/B) on top of the keyboard bindings.

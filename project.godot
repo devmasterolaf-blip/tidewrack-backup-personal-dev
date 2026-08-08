@@ -57,3 +57,8 @@ ui_down={
 "deadzone": 0.5,
 "events": [Object(InputEventJoypadMotion,"axis":1,"axis_value":1.0)]
 }
+
+[global]
+
+; Steam Next Fest demo build — feature-frozen for the public demo (2026-08).
+demo_build=true
