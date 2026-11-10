@@ -5,7 +5,6 @@ are the new keeper of **Cape Marrow Light**. The keeper before you, Edith Vane,
 rowed out into the fog eleven days ago and did not come back.
 
 Built solo by **Fogline Games** (Seattle) in **Godot 4**, shipping to Steam.
-
 > **Status:** Public-demo candidate (Steam Next Fest). Vertical slice +
 > branching conversation with save/load. See [`docs/milestones.md`](docs/milestones.md)
 > for the road to launch.
